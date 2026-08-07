@@ -12,7 +12,7 @@
 nathan@anonimo:~$ whoami
 > Analista de TI | Futuro SOC N1 / Blue Team
 > Estudante de Redes de Computadores (Estácio - conclusão 07/2027)
-> Construindo laboratório de cyber security do zero, documentando cada passo
+> Focado em aprender sobre essa área magnifica!
 ```
 
 <br>
