@@ -67,7 +67,7 @@ nathan@anonimo:~$ whoami
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=NathanCyber-Sec&show_icons=true&theme=radical&hide_border=true&bg_color=0D1117&title_color=A855F7&icon_color=A855F7" width="48%" />
+  <img src="https://github-readme-stats-eight-theta.vercel.app/api?username=NathanCyber-Sec&show_icons=true&theme=radical&hide_border=true&bg_color=0D1117&title_color=A855F7&icon_color=A855F7" width="48%" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=NathanCyber-Sec&theme=radical&hide_border=true&background=0D1117&ring=A855F7&fire=A855F7" width="48%" />
 </p>
 
