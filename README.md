@@ -61,7 +61,7 @@ Redes + Linux a fundo (até jan/2027) → AWS Solutions Architect Associate → 
 | Projeto | O que é |
 |---|---|
 | **[Home-Lab](https://github.com/NathanCyber-Sec/Home-Lab)** | Homelab de infra: Proxmox, OPNsense, MikroTik com VLANs e AD, com os erros e consertos documentados |
-| **[MeuTecnico](https://github.com/NathanCyber-Sec/MeuTecnico)** | Site institucional para uma assistência técnica (HTML, CSS, JS) |
+| **[MeuTecnico](https://github.com/NathanCyber-Sec/MeuTecnico)** | Site em produção de uma assistência técnica: [omeutecnico.com.br](https://omeutecnico.com.br/) (HTML, CSS, JS) |
 
 ### 📫 Contato
 
