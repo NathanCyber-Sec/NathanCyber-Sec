@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="Nathan Macedo — NOC / Infraestrutura de Redes">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#161b22" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" x2="1">
+      <stop offset="0" stop-color="#0d1117" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#0d1117" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#0d1117" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .mono { font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "Liberation Mono", monospace; }
+      .link { stroke: #1f6feb; stroke-width: 2; fill: none; opacity: .55; }
+      .link-dash { stroke: #00e5ff; stroke-width: 2; fill: none; stroke-dasharray: 6 10; animation: flow 1.2s linear infinite; opacity: .8; }
+      .node { fill: #0d1117; stroke: #00e5ff; stroke-width: 1.6; }
+      .node-fw { fill: #0d1117; stroke: #ff3b6b; stroke-width: 1.6; }
+      .lbl { fill: #c9d1d9; font-size: 13px; }
+      .sub { fill: #6e7681; font-size: 11px; }
+      .cursor { animation: blink 1s steps(1) infinite; }
+      .led { animation: led 1.6s ease-in-out infinite; }
+      .scan { animation: scan 6s linear infinite; }
+      @keyframes flow { to { stroke-dashoffset: -32; } }
+      @keyframes blink { 50% { opacity: 0; } }
+      @keyframes led { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+      @keyframes scan { from { transform: translateY(-40px); } to { transform: translateY(340px); } }
+    </style>
+  </defs>
+
+  <!-- fundo -->
+  <rect width="1200" height="320" fill="#0d1117"/>
+  <rect width="1200" height="320" fill="url(#grid)"/>
+  <rect class="scan" x="0" y="0" width="1200" height="40" fill="#00e5ff" opacity="0.04"/>
+
+  <!-- ===== topologia (direita) ===== -->
+  <g transform="translate(0,0)">
+    <!-- links -->
+    <path id="p1" class="link" d="M930 62 V118"/>
+    <path id="p2" class="link" d="M930 150 V196"/>
+    <path id="p3" class="link" d="M930 228 C930 250 800 245 800 270"/>
+    <path id="p4" class="link" d="M930 228 V270"/>
+    <path id="p5" class="link" d="M930 228 C930 250 1060 245 1060 270"/>
+    <path class="link-dash" d="M930 150 V196"/>
+
+    <!-- pacotes permitidos (verde) -->
+    <circle r="4" fill="#39d353" filter="url(#glow)">
+      <animateMotion dur="2.4s" repeatCount="indefinite" path="M930 62 V118 M930 150 V196 M930 228 C930 250 800 245 800 270"/>
+    </circle>
+    <circle r="4" fill="#39d353" filter="url(#glow)">
+      <animateMotion dur="2.4s" begin="0.8s" repeatCount="indefinite" path="M930 62 V118 M930 150 V196 M930 228 V270"/>
+    </circle>
+    <circle r="4" fill="#00e5ff" filter="url(#glow)">
+      <animateMotion dur="2s" begin="0.3s" repeatCount="indefinite" path="M1060 270 C1060 245 930 250 930 228"/>
+    </circle>
+    <circle r="4" fill="#39d353" filter="url(#glow)">
+      <animateMotion dur="2.4s" begin="1.6s" repeatCount="indefinite" path="M930 62 V118 M930 150 V196 M930 228 C930 250 1060 245 1060 270"/>
+    </circle>
+
+    <!-- pacote bloqueado (vermelho) morre no firewall -->
+    <circle r="4" fill="#ff3b6b" filter="url(#glow)">
+      <animateMotion dur="1.8s" begin="0.5s" repeatCount="indefinite" path="M930 20 V120" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="1.8s" begin="0.5s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.55;0.65;1"/>
+    </circle>
+
+    <!-- WAN -->
+    <g>
+      <ellipse cx="930" cy="44" rx="58" ry="18" class="node"/>
+      <text x="930" y="49" text-anchor="middle" class="mono lbl">WAN</text>
+    </g>
+    <!-- firewall -->
+    <g>
+      <rect x="868" y="118" width="124" height="32" rx="6" class="node-fw"/>
+      <text x="930" y="139" text-anchor="middle" class="mono lbl">fw01</text>
+      <circle cx="880" cy="134" r="3" fill="#ff3b6b" class="led"/>
+      <text x="1002" y="139" class="mono sub">OPNsense · deny any</text>
+    </g>
+    <!-- core switch -->
+    <g>
+      <rect x="868" y="196" width="124" height="32" rx="6" class="node"/>
+      <text x="930" y="217" text-anchor="middle" class="mono lbl">core-sw</text>
+      <circle cx="880" cy="212" r="3" fill="#39d353" class="led"/>
+      <text x="1002" y="217" class="mono sub">802.1Q trunk</text>
+    </g>
+    <!-- VLANs -->
+    <g>
+      <rect x="742" y="270" width="116" height="30" rx="6" class="node"/>
+      <text x="800" y="290" text-anchor="middle" class="mono lbl">VLAN 10 srv</text>
+      <rect x="872" y="270" width="116" height="30" rx="6" class="node"/>
+      <text x="930" y="290" text-anchor="middle" class="mono lbl">VLAN 20 usr</text>
+      <rect x="1002" y="270" width="116" height="30" rx="6" class="node"/>
+      <text x="1060" y="290" text-anchor="middle" class="mono lbl">VLAN 99 mgmt</text>
+    </g>
+  </g>
+
+  <!-- leve degradê pra separar texto da topologia -->
+  <rect width="760" height="320" fill="url(#fade)"/>
+
+  <!-- ===== texto (esquerda) ===== -->
+  <g class="mono">
+    <text x="56" y="78" fill="#39d353" font-size="16">nathan@noc:~$ <tspan fill="#c9d1d9">show version</tspan></text>
+    <text x="56" y="150" fill="#e6edf3" font-size="54" font-weight="700" letter-spacing="1">NATHAN MACEDO<tspan class="cursor" fill="#00e5ff">_</tspan></text>
+    <text x="56" y="192" fill="#00e5ff" font-size="20">NOC · Infraestrutura de Redes · Security-minded</text>
+    <text x="56" y="240" fill="#6e7681" font-size="15">routing · switching · VLAN · firewall · Proxmox · Linux</text>
+    <g transform="translate(56,262)">
+      <circle cx="6" cy="8" r="5" fill="#39d353" class="led"/>
+      <text x="20" y="13" fill="#8b949e" font-size="14">status: up · homelab online · PR, Brasil</text>
+    </g>
+  </g>
+</svg>
